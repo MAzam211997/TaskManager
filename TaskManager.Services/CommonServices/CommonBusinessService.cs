@@ -21,5 +21,10 @@ namespace TaskManager.Services.CommonServices
             set => _txn = value;
             get => _txn;
         }
+        private UserBusinessService _userBusinessService;
+
+        public UserBusinessService UserManager =>
+            _userBusinessService ?? (_userBusinessService =
+                new UserBusinessService(_clientConnectionString));
     }
 }
