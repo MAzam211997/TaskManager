@@ -25,7 +25,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\guards\common.model.ts" />
+    <None Remove="ClientApp\src\app\guards\getjsonfrom-controls-service-model.ts" />
+    <None Remove="ClientApp\src\app\guards\redirect-guard.ts" />
+    <None Remove="ClientApp\src\app\services\loader\LoaderService.ts" />
+    <None Remove="ClientApp\src\app\services\singleton\business-services.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TaskManager.Services\TaskManager.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\layouts\" />
+    <Folder Include="ClientApp\src\app\views\" />
+    <Folder Include="ClientApp\src\app\shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\common\common.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\common\getjsonfrom-controls-service-model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\guards\redirect-guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\loader\LoaderService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\singleton\business-services.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
