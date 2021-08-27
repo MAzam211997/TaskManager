@@ -38,8 +38,9 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\layouts\" />
+    <Folder Include="ClientApp\src\app\shared\ckeditorCustom\" />
+    <Folder Include="ClientApp\src\app\shared\constent\" />
     <Folder Include="ClientApp\src\app\views\" />
-    <Folder Include="ClientApp\src\app\shared\" />
   </ItemGroup>
 
   <ItemGroup>
