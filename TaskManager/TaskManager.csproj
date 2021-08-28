@@ -37,6 +37,11 @@
     <None Remove="ClientApp\src\app\models\sharedModels\response.model.ts" />
     <None Remove="ClientApp\src\app\models\sharedModels\send-email.model.ts" />
     <None Remove="ClientApp\src\app\models\Users\users.model.ts" />
+    <None Remove="ClientApp\src\app\repositories\CommonRepository\CommonRepository.ts" />
+    <None Remove="ClientApp\src\app\repositories\LoginRepository\ILoginRepository.ts" />
+    <None Remove="ClientApp\src\app\repositories\LoginRepository\LoginRepository.ts" />
+    <None Remove="ClientApp\src\app\repositories\UsersRepository\IUsersRepository.ts" />
+    <None Remove="ClientApp\src\app\repositories\UsersRepository\UsersRepository.ts" />
     <None Remove="ClientApp\src\app\services\loader\LoaderService.ts" />
     <None Remove="ClientApp\src\app\services\singleton\business-services.ts" />
   </ItemGroup>
@@ -60,6 +65,11 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\sharedModels\response.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\sharedModels\send-email.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Users\users.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\repositories\CommonRepository\CommonRepository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\repositories\LoginRepository\ILoginRepository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\repositories\LoginRepository\LoginRepository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\repositories\UsersRepository\IUsersRepository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\repositories\UsersRepository\UsersRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\loader\LoaderService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\singleton\business-services.ts" />
   </ItemGroup>

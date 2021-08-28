@@ -1,15 +1,22 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
-  production: false
+  production: false,
+  urlAddress: getEnvironment(),
 };
+function getEnvironment() {
+  //var env;
+  //env = window.location;
 
-/*
- * In development mode, to ignore zone related error stack frames such as
- * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can
- * import the following file, but please comment it out in production mode
- * because it will have performance impact when throw error
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+  //if (env.hostname === "localhost")
+  //    env = 'http://localhost:51912/'; // Url for development server
+  //else if (env.hostname === '192.168.10.106')
+  //    env = 'http://192.168.10.106:81/'; //Url for local build server
+  //else if (env.hostname === 'erp.razorconsultants.com')
+  //    env = 'http://erp.razorconsultants.com/'; //Url for production server
+  //else if (env.hostname === 'erpqa.razorconsultants.com')
+  //    env = 'http://erpqa.razorconsultants.com/'; //Url for production server
+  //else if (env.hostname === 'erpa.razorconsultants.com')
+  //    env = 'http://erpa.razorconsultants.com/'; //Url for production server
+  //else if (env.hostname === 'erph.razorconsultants.com')
+  //    env = 'http://erph.razorconsultants.com/'; //Url for production server
+  return '';
+}
