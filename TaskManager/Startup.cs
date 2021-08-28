@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using TaskManager.Global.Helpers;
 
-namespace TaskManaer
+namespace TaskManager
 {
     public class Startup
     {
