@@ -45,7 +45,7 @@ namespace TaskManager.Controllers
                 if (IsClientDbOnline(SessionVars.ConnectionString))
                 {
                     CommonManager commonManager = new CommonManager();
-                    Users userObject = commonManager.UserManager.SelectUserForLogin(loginViewModel.EmailAddress,
+                    Users userObject = commonManager.UsersManager.SelectUserForLogin(loginViewModel.EmailAddress,
                         GeneralHelper.HashSHA1(loginViewModel.Password));
 
                     if (userObject == null)
@@ -120,7 +120,7 @@ namespace TaskManager.Controllers
                 if (IsClientDbOnline(SessionVars.ConnectionString))
                 {
                     CommonManager commonManager = new CommonManager();
-                    Users userObject = commonManager.UserManager.SelectUserForGotPasswordByUserName(loginViewModel.EmailAddress);
+                    Users userObject = commonManager.UsersManager.SelectUserForGotPasswordByUserName(loginViewModel.EmailAddress);
 
                     if (userObject == null)
                     {
@@ -131,7 +131,7 @@ namespace TaskManager.Controllers
                     string _password = Guid.NewGuid().ToString().ToLower().Substring(0, 8);
                     userObject.Password = GeneralHelper.HashSHA1(_password);
 
-                    bool isreset = commonManager.UserManager.UpdateUserResetPassword(userObject, false, true); ;
+                    bool isreset = commonManager.UsersManager.UpdateUserResetPassword(userObject, false, true); ;
                     if (isreset)
                     {
                         bool _isEmailSent = SendAccountActivationEmail(userObject, _password);

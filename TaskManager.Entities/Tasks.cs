@@ -4,9 +4,9 @@ using System.Text;
 
 namespace TaskManager.Entities
 {
-	public class Roles
+	public class Tasks
 	{
-		public int RoleId { get; set; }
-		public string RoleTitle { get; set; }
+		public int TaskId { get; set; }
+		public string TaskTitle { get; set; }
 	}
 }

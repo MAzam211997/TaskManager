@@ -2,24 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Net;
-using GeneralModel;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Tools.Global;
-using Tools.Global.Filters;
-using Tools.Managers;
-using Tools.ViewModel;
+using TaskManager.Global;
 using TaskManager.Global.Filters;
+using TaskManager.Managers;
+using TaskManager.ViewModel;
+using TaskManager.Entities;
+using TaskManager.Entities.GeneralModels;
 
 namespace TaskManager.Controllers
 {
@@ -39,7 +32,7 @@ namespace TaskManager.Controllers
         {
             try
             {
-                var users = CommonManager.UserManager.SelectAll(pq_curPage, pq_rPP, filterText, SessionVars.LoggedInLoginID);
+                var users = CommonManager.UsersManager.SelectAll(pq_curPage, pq_rPP, filterText, SessionVars.LoggedInLoginID);
                 _responseViewModel = users != null ? new ResponseViewModel(HttpStatusCode.OK, users) : new ResponseViewModel(HttpStatusCode.NotFound, users, "Not Found");
             }
             catch (Exception ex)
@@ -56,7 +49,7 @@ namespace TaskManager.Controllers
             {
                 bool isRecordDeleted = false;
                 if (!IsFileDelete(fileName))
-                    isRecordDeleted = CommonManager.UserManager.DeleteUser(Convert.ToInt32(userID));
+                    isRecordDeleted = CommonManager.UsersManager.DeleteUser(Convert.ToInt32(userID));
 
                 _responseViewModel = isRecordDeleted
                     ? new ResponseViewModel(HttpStatusCode.OK, true, "User is deleted successfully.")
@@ -75,7 +68,7 @@ namespace TaskManager.Controllers
         {
             try
             {
-                Users user = CommonManager.UserManager.SelectUserByUserID(userID);
+                Users user = CommonManager.UsersManager.SelectUserByUserID(userID);
                 _responseViewModel = new ResponseViewModel(HttpStatusCode.OK, user, "Success");
             }
             catch (Exception e)
@@ -93,7 +86,7 @@ namespace TaskManager.Controllers
             DataTable roles = new DataTable();
             try
             {
-                List<Role> rolesList = new List<Role>();
+                List<Roles> rolesList = new List<Roles>();
                 roles = CommonManager.RolesManager.SelectAll();
                 _responseViewModel = new ResponseViewModel(HttpStatusCode.OK, roles, "224");
             }
@@ -119,7 +112,7 @@ namespace TaskManager.Controllers
                     UserID = Convert.ToInt32(data["UserID"]),
                     FullName = data["FullName"],
                     EmailAddress = data["EmailAddress"],
-                    Initial = data["Initial"],
+                    Initials = data["Initials"],
                     RoleID = Convert.ToInt32(data["RoleID"]),
                     Mobile = data["Mobile"],
                     Password = data["Password"],
@@ -153,11 +146,11 @@ namespace TaskManager.Controllers
                 object result;
                 if (user.IsInserting)
                 {
-                    result = CommonManager.UserManager.InsertUser(user);
+                    result = CommonManager.UsersManager.InsertUser(user);
                 }
                 else
                 {
-                    result = CommonManager.UserManager.UpdateUser(user);
+                    result = CommonManager.UsersManager.UpdateUser(user);
                 }
 
                 if (user.IsInserting)
@@ -285,7 +278,7 @@ namespace TaskManager.Controllers
                     if (CredentialManager.UserCredentialManager.IsValueDuplicate("CFN_Users", "EmailAddress", user.EmailAddress))
                         return Ok(new ResponseViewModel(HttpStatusCode.NotFound, false, "Email address already exist."));
 
-                    result = CommonManager.UserManager.UpdateUserProfile(user);
+                    result = CommonManager.UsersManager.UpdateUserProfile(user);
                     _responseViewModel = Convert.ToBoolean(result)
                         ? new ResponseViewModel(HttpStatusCode.OK, result, "Profile Updated Successfully")
                         : new ResponseViewModel(HttpStatusCode.InternalServerError, result, "Something went wrong.");
@@ -306,7 +299,7 @@ namespace TaskManager.Controllers
             try
             {
                 bool isPasswordChanged =
-                    CommonManager.UserManager.ResetPassword(resetModel.LoginID, GeneralHelper.HashSHA1(resetModel.Password));
+                    CommonManager.UsersManager.ResetPassword(resetModel.LoginID, GeneralHelper.HashSHA1(resetModel.Password));
 
                 _responseViewModel = isPasswordChanged
                     ? new ResponseViewModel(HttpStatusCode.OK, true, "Success")
@@ -325,7 +318,7 @@ namespace TaskManager.Controllers
             try
             {
 
-                if (!CommonManager.UserManager.AuthenticateUser(SessionVars.LoggedInLoginID, GeneralHelper.HashSHA1(resetModel.OldPassword)))
+                if (!CommonManager.UsersManager.AuthenticateUser(SessionVars.LoggedInLoginID, GeneralHelper.HashSHA1(resetModel.OldPassword)))
                 {
                     return Ok(new ResponseViewModel(HttpStatusCode.NotFound, false, "Your current password is wrong."));
                 }
@@ -333,7 +326,7 @@ namespace TaskManager.Controllers
                 {
                     return Ok(new ResponseViewModel(HttpStatusCode.NotFound, false, "New password and confirm password should be same."));
                 }
-                bool isPasswordChanged = CommonManager.UserManager.ResetPassword(SessionVars.LoggedInLoginID, GeneralHelper.HashSHA1(resetModel.NewPassword));
+                bool isPasswordChanged = CommonManager.UsersManager.ResetPassword(SessionVars.LoggedInLoginID, GeneralHelper.HashSHA1(resetModel.NewPassword));
 
                 _responseViewModel = isPasswordChanged
                     ? new ResponseViewModel(HttpStatusCode.OK, true, "Success")
@@ -360,7 +353,7 @@ namespace TaskManager.Controllers
                     key = Request.Query["search_key"];
                     roleId = Convert.ToInt32(Request.Query["roleId"]);
                     isSigningPartner = Convert.ToBoolean(Request.Query["isSigningPartner"]);
-                    var namesObj = CommonManager.UserManager.SearchUsersByUsername(key, loggedInUserID, roleId, isSigningPartner);
+                    var namesObj = CommonManager.UsersManager.SearchUsersByUsername(key, loggedInUserID, roleId, isSigningPartner);
                     if (namesObj != null)
                     {
                         return Ok(namesObj);

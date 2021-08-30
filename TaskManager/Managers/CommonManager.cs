@@ -21,8 +21,8 @@ namespace TaskManager.Managers
             set => _commonBusinessService.DBTransaction = value;
             get => _commonBusinessService.DBTransaction;
         }
-        public UserBusinessService UserManager => _commonBusinessService.UserManager;
-        //public RoleBusinessService RolesManager => _commonBusinessService.RolesManager;
+        public UserBusinessService UsersManager => _commonBusinessService.UsersManager;
+        public RolesBusinessService RolesManager => _commonBusinessService.RolesManager;
         //public DeliverableService DeliverableManager => _commonBusinessService.DeliverableManager;
         //public DeliverableAssignmentService DeliverableAssignmentManager => _commonBusinessService.DeliverableAssignmentManager;
         //public DeliverableCommentsService DeliverableCommentsManager => _commonBusinessService.DeliverableCommentsManager;

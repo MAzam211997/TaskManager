@@ -23,8 +23,13 @@ namespace TaskManager.Services.CommonServices
         }
         private UserBusinessService _userBusinessService;
 
-        public UserBusinessService UserManager =>
+        public UserBusinessService UsersManager =>
             _userBusinessService ?? (_userBusinessService =
                 new UserBusinessService(_clientConnectionString));
+
+        private RolesBusinessService _rolesBusinessService;
+        public RolesBusinessService RolesManager =>
+            _rolesBusinessService ?? (_rolesBusinessService =
+                new RolesBusinessService(_clientConnectionString));
     }
 }
