@@ -12,5 +12,10 @@ namespace TaskManager.Entities
         public int? CreatedBy { get; set; }
         public int? ModifiedBy { get; set; }
         public int? DeletedBy { get; set; }
+        public bool IsActive { set; get; }
+        public bool IsInserting { set; get; }
+        public int? Total { set; get; }
+        public int? RowIndex { set; get; }
+        public int? IsDeleted { get; set; }
     }
 }

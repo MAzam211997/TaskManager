@@ -64,7 +64,8 @@ namespace TaskManager.Services.CommonServices
                 CreateParameter("Mobile", SqlDbType.VarChar, user.Mobile),
                 CreateParameter("Password", SqlDbType.VarChar, user.Password),
                 CreateParameter("IsActive", SqlDbType.Bit, user.IsActive),
-                CreateParameter("CreatedBy", SqlDbType.VarChar, user.CreatedBy),
+                CreateParameter("CreatedBy", SqlDbType.Int, user.CreatedBy),
+                CreateParameter("CreatedDate", SqlDbType.DateTime2, user.CreatedDate),
                 CreateParameter("ArabicName", SqlDbType.VarChar, user.ArabicName),
                 newIDParameter);
 
@@ -82,7 +83,8 @@ namespace TaskManager.Services.CommonServices
             CreateParameter("EmailAddress", SqlDbType.NVarChar, user.EmailAddress),
             CreateParameter("Mobile", SqlDbType.VarChar, user.Mobile),
             CreateParameter("Password", SqlDbType.VarChar, user.Password),
-            CreateParameter("CreatedBy", SqlDbType.VarChar, user.CreatedBy),
+                CreateParameter("ModifiedBy", SqlDbType.Int, user.ModifiedBy),
+                CreateParameter("ModifiedDate", SqlDbType.DateTime2, user.ModifiedDate),
             CreateParameter("IsSigningPartner", SqlDbType.Bit, user.IsSigningPartner),
             CreateParameter("Signature", SqlDbType.VarChar, user.Signature),
             CreateParameter("ArabicName", SqlDbType.VarChar, user.ArabicName),
@@ -169,7 +171,7 @@ namespace TaskManager.Services.CommonServices
                 EmailAddress = GetString(dr, "EmailAddress"),
                 Mobile = GetString(dr, "Mobile"),
                 Password = GetString(dr, "Password"),
-                CreationDate = GetDateTime(dr, "CreationDate"),
+                ModifiedDate = GetDateTime(dr, "CreationDate"),
                 LastLoginDate = GetDateTime(dr, "LastLoginDate"),
                 LastPasswordChangeDate = GetDateTime(dr, "LastPasswordChangeDate"),
                 IsActive = GetBool(dr, "IsActive"),

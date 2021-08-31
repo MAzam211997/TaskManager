@@ -17,17 +17,11 @@ namespace TaskManager.Entities
         public string EmailAddress { set; get; }
         public string Mobile { set; get; }
         public string CurrentPassword { set; get; }
-        public DateTime CreationDate { set; get; }
-        public int CreatedBy { set; get; }
         public DateTime LastLoginDate { set; get; }
         public DateTime LastPasswordChangeDate { set; get; }
-        public bool IsActive { set; get; }
-        public bool IsInserting { set; get; }
         public bool IsSigningPartner { set; get; }
         public string Signature { set; get; }
         public string ArabicName { set; get; }
-        public IFormFile Sign_File { set; get; }
-        public int? Total { set; get; }
-        public int? RowIndex { set; get; }
+        public IFormFile Profile_Imae { set; get; }
     }
 }
