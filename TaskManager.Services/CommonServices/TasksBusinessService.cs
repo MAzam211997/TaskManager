@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using TaskManager.Entities;
+using TaskManager.Entities.GeneralModels;
 using TaskManager.Services.GeneralServices;
 
 namespace TaskManager.Services.CommonServices
@@ -22,7 +23,7 @@ namespace TaskManager.Services.CommonServices
             DataSet ds = ExecuteQueryCommand(ProcStarter + "Tasks_SelectByTaskId", 
                 CreateParameter("TaskId", SqlDbType.Int, taskId));
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                return CreateRoleFromDataRow(ds.Tables[0].Rows[0]);
+                return CreateTaskFromDataRow(ds.Tables[0].Rows[0]);
             return null;
         }
 
@@ -73,16 +74,16 @@ namespace TaskManager.Services.CommonServices
         }
 
 
-        public Roles CreateRoleFromDataRow(DataRow dr)
+        public Tasks CreateTaskFromDataRow(DataRow dr)
         {
-            Roles role = new Roles
+            Tasks task = new Tasks
             {
-                RoleID = GetInt(dr, "RoleID"),
-                RoleName = GetString(dr, "RoleName"),
-                IsActive = GetBool(dr, "IsActive"),
-                UserID = GetInt(dr, "UserID")
+                TaskId = GetInt(dr, "TaskId"),
+                TaskTitle = GetString(dr, "TaskTitle"),
+                TaskDescription = GetString(dr, "TaskDescription"),
+                IsActive = GetBool(dr, "IsActive")
             };
-            return role;
+            return task;
 
         }
     }

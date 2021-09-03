@@ -16,6 +16,6 @@ namespace TaskManager.Entities
         public bool IsInserting { set; get; }
         public int? Total { set; get; }
         public int? RowIndex { set; get; }
-        public int? IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }
