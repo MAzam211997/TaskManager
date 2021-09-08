@@ -9,6 +9,14 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { TasksRepository } from './repositories/TasksRepository/TasksRepository';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { UsersComponent } from './views/configuration/users/users.component';
+import { CommonRepository } from './repositories/CommonRepository/CommonRepository';
+import { BusinessServices } from './services/singleton/business-services';
+import { TasksComponent } from './views/tasks/tasks.component';
 
 @NgModule({
   declarations: [
@@ -16,19 +24,29 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    //RouterModule,
+    BrowserAnimationsModule,
+    TypeaheadModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      closeButton: true,
+      enableHtml: true
+    }),
   ],
-  providers: [],
+  providers: [  TasksRepository
+              //, UsersComponent
+              , CommonRepository
+              , BusinessServices
+             ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

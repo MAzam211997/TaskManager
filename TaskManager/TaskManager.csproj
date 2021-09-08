@@ -58,7 +58,6 @@
     <Folder Include="ClientApp\src\app\layouts\admin\" />
     <Folder Include="ClientApp\src\app\shared\ckeditorCustom\" />
     <Folder Include="ClientApp\src\app\shared\constent\" />
-    <Folder Include="ClientApp\src\app\views\tasks\" />
   </ItemGroup>
 
   <ItemGroup>
