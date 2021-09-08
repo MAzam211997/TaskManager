@@ -1,0 +1,218 @@
+<div class="datatableload" *ngIf="showMainContent; else addNewForm">
+  <section class="tabs-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 b-cumbs">
+          <h3 class="float-start heading">All Users</h3>
+          <div class="float-end forms">
+            <input id="searchText" class="form-control" type="text" placeholder="Search" [(ngModel)]="searchText" (keyup)="onSearchkeyUp($event)" autocomplete="cc-csc" />
+            <button><i class="las la-search" (click)="onSearchkeyUp($event)"></i></button>
+            <a href="javascript:;" class="btn btn1" (click)="ShowHideButton();"><i class="las la-plus"></i> Add New</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="table-outer py-4 my-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table bg-white radius shadow table-responsive-stack" id="tableOne">
+            <thead class="thead-dark">
+              <tr class="shadow">
+                <th width="30" class="text-center">#</th>
+                <th>ID</th>
+                <th>Initial</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th width="60" class="text-center">Active</th>
+                <th width="120" class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="usersObject == 0 || usersObject == null" class="table-warning text-center">
+                <td colspan="7" class="text-danger fw-bold">No data found!</td>
+              </tr>
+              <tr *ngFor="let user of usersObject;let i = index">
+                <td class="text-center">{{user.rowIndex}}</td>
+                <td>{{user.userID}}</td>
+                <td>{{user.initial}}</td>
+                <td>{{user.fullName}}</td>
+                <td>{{user.emailAddress}}</td>
+                <td>{{user.roleName}}</td>
+                <td class="text-center">{{user.isActive?'Yes':'No'}}</td>
+                <td class="text-center">
+                  <a href="javascript:;" class="btn btn-warning btn-sm" data-toggle="tooltip" data-bs-placement="top" title="Edit" (click)="onDetailClick(user)"><i class="las la-edit"></i></a>
+                  <a href="javascript:;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-bs-placement="top" title="Delete" (click)="onDeletClick(user)"><i class="las la-trash"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center" *ngIf="usersObject > 0 || usersObject != null">
+            <nav aria-label="Page navigation example" class="py-5 ms-auto me-auto d-inline-block">
+              <ul class="pagination">
+                <li class="page-item"> <a class="btn page-link" href="javascript:;" aria-label="Previous" id="btPrevious" (click)="previousPage()"> <span aria-hidden="true" class="las la-arrow-left"></span> </a> </li>
+                <li class="page-item" *ngFor='let in of counter(totalPages) ;let i = index' id="{{'page-'+(i+1)}}"><a class="page-link" href="javascript:;" (click)="setCurrentPage(i+1)">{{i+1}}</a></li>
+                <li class="page-item"> <a class="btn page-link" href="javascript:;" aria-label="Next" id="btNext" (click)="nextPage()"> <span aria-hidden="true" class="las la-arrow-right"></span> </a> </li>
+              </ul>
+            </nav>
+          </div>
+          <!--Pagination Code Ends Here-->
+        </div>
+        <!--col-sm-12-->
+      </div>
+      <!--row-->
+    </div>
+    <!--container-->
+  </section>
+</div>
+<ng-template #addNewForm>
+  <section class="tabs-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 b-cumbs">
+          <h3 class="float-start heading">Create User Account</h3>
+          <a href="javascript:;" class="btn btn1 float-end" (click)="dispalyGrid();"><i class="las la-arrow-left"></i> Back</a>
+          <div class="clearfix"></div><!--clearfix-->
+          <br />
+        </div>
+        <!--col-sm-12-->
+      </div>
+      <!--row-->
+    </div>
+    <!--container-->
+  </section>
+  <div id="ContainerFormFields" class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <section class="common-boxes px-5 py-4 bg-white radius mt-4">
+          <br />
+          <div class="row">
+            <div class="col-sm-6 ps-0">
+              <div class="form-floating mb-3">
+                <input id="FullName" type="text" placeholder="Name" class="form-control Required" data-jsname="Name" [(ngModel)]="model.FullName" (blur)="SetInitial()">
+                <label for="name">Name</label>
+              </div>
+              <!--form-floating-->
+            </div>
+            <!--col-sm-6-->
+            <div class="col-sm-6 pe-0">
+              <div class="form-floating mb-3">
+                <input id="EmailAddress" type="email" placeholder="Email" class="form-control Required" data-jsname="Email" [(ngModel)]="model.EmailAddress" [disabled]="!model.IsInserting">
+                <label for="label">Email</label>
+              </div>
+              <!--form-floating-->
+            </div>
+            <!--col-sm-6-->
+          </div>
+          <!--row-->
+          <div class="row">
+            <div class="col-sm-6 ps-0">
+              <div class="form-floating mb-3">
+                <input id="Initial" type="text" placeholder="Initial" class="form-control Required" data-jsname="Initial" [(ngModel)]="model.Initial" maxlength="4">
+                <label for="name">Initial</label>
+              </div>
+              <!--form-floating-->
+            </div>
+
+            <div class="col-sm-6 pe-0">
+              <div class="form-floating mb-3">
+                <select id="RoleID" class="form-control Required" data-jsname="Role"
+                        [(ngModel)]="model.RoleID">
+                  <option *ngFor="let role of rolesObject" selected value="{{role.code}}">
+                    {{role.name}}
+                  </option>
+                </select>
+                <label for="label2">Role</label>
+              </div>
+              <!--form-floating-->
+            </div>
+            <!--col-sm-6-->
+          </div>
+          <!--row-->
+          <div class="row">
+            <div class="col-sm-6 ps-0">
+              <div class="form-floating mb-3">
+                <input id="Mobile" type="text" placeholder="Mobile Number" class="form-control" data-jsname="Mobile" [(ngModel)]="model.Mobile" autocomplete="cc-csc">
+                <label for="label3">Mobile Number</label>
+              </div>
+              <!--form-floating-->
+            </div>
+            <!--col-sm-6-->
+
+            <div class="col-sm-6 pe-0">
+              <div class="form-floating mb-3">
+                <input id="Password" placeholder="Password" type="password" class="form-control Required" data-jsname="Password" [(ngModel)]="model.Password" autocomplete="cc-csc">
+                <label for="label4">Password</label>
+              </div>
+              <!--form-floating-->
+            </div>
+            <!--col-sm-6-->
+          </div>
+          <!--row-->
+
+          <div class="row">
+            <div class="col-sm-6 ps-0">
+              <br />
+              <div class="form-check mt-1 mb-3">
+                <input class="form-check-input mt-0" id="IsActive" type="checkbox" [(ngModel)]="model.IsActive">
+                <label class="form-check-label" for="IsActive">Active</label>
+              </div>
+              <!--form-check-->
+            </div>
+            <div class="col-sm-6 pe-0">
+              <br />
+              <div class="form-check mt-1 mb-3">
+                <input class="form-check-input mt-0" id="IsSigningPartner" type="checkbox" [(ngModel)]="model.IsSigningPartner">
+                <label class="form-check-label" for="IsSigningPartner">Signing Partner</label>
+              </div>
+              <!--form-check-->
+            </div>
+          </div>
+          <!--row-->
+          <div class="row">
+            <div class="col-sm-6 ps-0" *ngIf="model.IsSigningPartner">
+              <div class="form-floating mb-3">
+                <input id="ArabicName" type="text" placeholder="Arabic Name" [class]="model.IsSigningPartner ? 'form-control Required' : form-control" data-jsname="Arabic Name" [(ngModel)]="model.ArabicName">
+                <label for="ArabicName">Arabic Name</label>
+              </div>
+              <!--form-floating-->
+
+            </div>
+            <!--col-sm-6-->
+            <div class="col-sm-6 pe-0" *ngIf="model.IsSigningPartner">
+              <div class="form-floating mb-3 upload-file">
+                <label for="Signature" class="btn btn-primary"><i class="las la-upload"></i> {{model.IsInserting ? 'Upload Signature' : 'Uploaded Signature'}} </label>
+                <input type="text" class="form-control"
+                       (click)="uploadFile.click()"
+                       [readonly]="!model.IsInserting"
+                       data-jsname="Signature" id="Signature" name="Signature"
+                       [(ngModel)]="model.Signature">
+
+                <input type="file" #uploadFile class="form-control" accept="image/*" hidden
+                       (change)="UploadSignature('CFN_Users','Signature',this.$event.target.files)" />
+              </div>
+              <!--form-floating-->
+            </div>
+            <!--col-sm-6-->
+          </div>
+          <!--row-->
+          <div class="row">
+            <div class="col-sm-6 ps-0">
+              <button type="button" (click)="addUpdateUser()" class="btn btn-light py-2 px-4 mt-4"><img src="assets/images/icon-save.png" alt="Save Icon" height="15" /> {{model.IsInserting?'Create':'Update'}}</button>
+            </div>
+            <!--col-sm-6-->
+          </div>
+          <!--row--> <br />
+        </section>
+        <!--table-outer-->
+        <!--Common Boxes Section Ends Here-->
+
+      </div>
+      <!--col-sm-12-->
+    </div>
+    <!--row-->
+  </div>
+</ng-template>

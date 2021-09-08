@@ -1,0 +1,41 @@
+<section class="login vh-100">
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 p-0">
+      <div class="login-box h-100 vh-100">
+        <div class="text-center">
+          <a href="javascript:;"><img src="assets/images/logo.png" alt="Logo" class="img-fluid" /></a>
+          <h1>Sign Into Your Account</h1>
+          <div class="login-form">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" placeholder="EmailAddress" [(ngModel)]="login.EmailAddress"/>
+              <label for="floatingInput">Email</label>
+            </div>
+            <!--form-floating-->
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="login.Password" />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <!--form-floating-->
+            <a href="javascript:;" class="forgot">Forgot Password?</a><br />
+            <button name="btn" class="btn btn-dark btn-block transition-effect hvr-icon-wobble-horizontal" (click)="onSubmit();"><i class="las la-sign-in-alt hvr-icon"></i> Login</button>
+            <p>Don't have an account? <a href="javascript:;">Sign Up</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--col-lg-3-->
+    <div class="col-lg-9 col-md-8 col-sm-6 text-center">
+      <div class="login-bg">
+        <h2>Welcome To Alluhaid &amp; Alyahya!</h2>
+        <h3>LYCA Is A Boutique Accounting Firm</h3>
+        <p class="text-dark">
+          Established by former Big 4 executives who have worked<br />
+          together passionately to build up and manage the firm.
+        </p>
+        <img src="assets/images/login-bg.png" alt="Image" class="img-fluid" />
+      </div>
+      <!--login-bg-->
+    </div>
+    <!--col-lg-8-->
+  </div>
+</section>

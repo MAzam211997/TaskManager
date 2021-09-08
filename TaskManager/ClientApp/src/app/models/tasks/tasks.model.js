@@ -15,33 +15,21 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Users = void 0;
+exports.tasks = void 0;
 var auditableEntity_model_1 = require("../auditableEntity/auditableEntity.model");
-var Users = /** @class */ (function (_super) {
-    __extends(Users, _super);
-    function Users() {
+var tasks = /** @class */ (function (_super) {
+    __extends(tasks, _super);
+    function tasks() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.UserID = 0;
-        _this.RoleID = 0;
-        _this.RoleName = '';
-        _this.Initial = '';
-        _this.FullName = '';
-        _this.IsActive = false;
-        _this.EmailAddress = '';
-        _this.Mobile = '';
-        _this.Password = '';
-        _this.CurrentPassword = '';
-        _this.OldPassword = '';
-        _this.NewPassword = '';
-        _this.ConfirmNewPassword = '';
-        _this.IsInserting = false;
-        _this.IsSigningPartner = false;
-        _this.Signature = '';
-        _this.ArabicName = '';
-        _this.OldFile = '';
+        _this.TaskId = 0;
+        _this.TaskTitle = '';
+        _this.TaskDescription = '';
+        _this.IsCompleted = false;
+        _this.CompletionDate = new Date();
+        _this.CompletedBy = 0;
         return _this;
     }
-    return Users;
+    return tasks;
 }(auditableEntity_model_1.auditableEntity));
-exports.Users = Users;
-//# sourceMappingURL=users.model.js.map
+exports.tasks = tasks;
+//# sourceMappingURL=tasks.model.js.map

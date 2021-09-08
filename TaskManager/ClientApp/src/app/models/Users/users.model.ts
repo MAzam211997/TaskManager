@@ -1,4 +1,7 @@
-export class Users {
+import { auditableEntity } from "../auditableEntity/auditableEntity.model";
+
+export class Users extends auditableEntity
+{
   UserID?: number=0;
   RoleID: number=0;
   RoleName: string='';

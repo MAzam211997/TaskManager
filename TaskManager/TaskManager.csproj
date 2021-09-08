@@ -33,9 +33,11 @@
     <None Remove="ClientApp\src\app\guards\common.model.ts" />
     <None Remove="ClientApp\src\app\guards\getjsonfrom-controls-service-model.ts" />
     <None Remove="ClientApp\src\app\guards\redirect-guard.ts" />
+    <None Remove="ClientApp\src\app\models\auditableEntity\auditableEntity.model.ts" />
     <None Remove="ClientApp\src\app\models\login\Login.model.ts" />
     <None Remove="ClientApp\src\app\models\sharedModels\response.model.ts" />
     <None Remove="ClientApp\src\app\models\sharedModels\send-email.model.ts" />
+    <None Remove="ClientApp\src\app\models\tasks\tasks.model.ts" />
     <None Remove="ClientApp\src\app\models\Users\users.model.ts" />
     <None Remove="ClientApp\src\app\repositories\CommonRepository\CommonRepository.ts" />
     <None Remove="ClientApp\src\app\repositories\LoginRepository\ILoginRepository.ts" />
@@ -54,16 +56,22 @@
     <Folder Include="ClientApp\src\app\layouts\admin\" />
     <Folder Include="ClientApp\src\app\shared\ckeditorCustom\" />
     <Folder Include="ClientApp\src\app\shared\constent\" />
-    <Folder Include="ClientApp\src\app\views\" />
+    <Folder Include="ClientApp\src\app\views\tasks\" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\auditableEntity\auditableEntity.model.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\common\common.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\common\getjsonfrom-controls-service-model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\guards\redirect-guard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\login\Login.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\sharedModels\response.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\sharedModels\send-email.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\tasks\tasks.model.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\Users\users.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\repositories\CommonRepository\CommonRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\repositories\LoginRepository\ILoginRepository.ts" />
