@@ -7,7 +7,6 @@ export class Users extends auditableEntity
   RoleName: string='';
   Initial: string='';
   FullName: string='';
-  IsActive: boolean=false;
   EmailAddress: string='';
   Mobile: string='';
   Password: string = '';
@@ -15,7 +14,6 @@ export class Users extends auditableEntity
   OldPassword: string='';
   NewPassword: string='';
   ConfirmNewPassword: string='';
-  IsInserting: boolean = false;
   IsSigningPartner: boolean = false;
   Signature: string = '';
   ArabicName: string = '';

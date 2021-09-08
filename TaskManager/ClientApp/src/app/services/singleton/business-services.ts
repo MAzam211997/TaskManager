@@ -2,6 +2,7 @@ import { Injectable, Injector } from "@angular/core";
 import { UsersRepository } from "src/app/repositories/UsersRepository/UsersRepository";
 import { LoginRepository } from "src/app/repositories/LoginRepository/LoginRepository";
 import { CommonRepository } from "src/app/repositories/CommonRepository/CommonRepository";
+import { TasksRepository } from "../../repositories/TasksRepository/TasksRepository";
 @Injectable()
 export class BusinessServices {
 
@@ -29,6 +30,14 @@ export class BusinessServices {
       this._commonService = this.injector.get(CommonRepository);
     }
     return this._commonService;
+  }
+
+  private _tasksService: TasksRepository;
+  public get taskService(): TasksRepository {
+    if (!this._tasksService) {
+      this._tasksService = this.injector.get(TasksRepository);
+    }
+    return this._tasksService;
   }
 
 }

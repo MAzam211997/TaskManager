@@ -42,6 +42,8 @@
     <None Remove="ClientApp\src\app\repositories\CommonRepository\CommonRepository.ts" />
     <None Remove="ClientApp\src\app\repositories\LoginRepository\ILoginRepository.ts" />
     <None Remove="ClientApp\src\app\repositories\LoginRepository\LoginRepository.ts" />
+    <None Remove="ClientApp\src\app\repositories\TasksRepository\ITasksRepository.ts" />
+    <None Remove="ClientApp\src\app\repositories\TasksRepository\TasksRepository.ts" />
     <None Remove="ClientApp\src\app\repositories\UsersRepository\IUsersRepository.ts" />
     <None Remove="ClientApp\src\app\repositories\UsersRepository\UsersRepository.ts" />
     <None Remove="ClientApp\src\app\services\loader\LoaderService.ts" />
@@ -76,6 +78,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\repositories\CommonRepository\CommonRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\repositories\LoginRepository\ILoginRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\repositories\LoginRepository\LoginRepository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\repositories\TasksRepository\ITasksRepository.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\repositories\TasksRepository\TasksRepository.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\repositories\UsersRepository\IUsersRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\repositories\UsersRepository\UsersRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\loader\LoaderService.ts" />
