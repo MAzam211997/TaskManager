@@ -13,8 +13,8 @@ declare var $: any;
 export class TasksComponent implements AfterViewInit, OnDestroy {
    
     commonconstant = new CommonConstant();
-  constructor(private businessService: BusinessServices, private loaderService: LoaderService, private globals: Globals) {
-    console.log("Called te cons")
+  constructor(private businessService: BusinessServices, private toastrService: ToastrService, private loaderService: LoaderService, private globals: Globals) {
+    console.log("Called the cons")
     }
     ngOnDestroy(): void {
         $("body").removeClass("dashboard-body");
