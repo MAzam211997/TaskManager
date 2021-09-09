@@ -17,6 +17,15 @@ import { UsersComponent } from './views/configuration/users/users.component';
 import { CommonRepository } from './repositories/CommonRepository/CommonRepository';
 import { BusinessServices } from './services/singleton/business-services';
 import { TasksComponent } from './views/tasks/tasks.component';
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginRepository } from './repositories/LoginRepository/LoginRepository';
+import { LoaderService } from './services/loader/LoaderService';
+import { Globals } from '../environments/Globals';
+import { UsersRepository } from './repositories/UsersRepository/UsersRepository';
+import { P404Component } from './views/error/404.component';
+import { P401Component } from './views/error/401.component';
+import { LoginComponent } from './views/authentication/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +34,17 @@ import { TasksComponent } from './views/tasks/tasks.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    TasksComponent
+    TasksComponent,
+    P404Component,
+    P401Component,
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    //RouterModule,
+    AppRoutingModule,
+    SharedModule,
     BrowserAnimationsModule,
     TypeaheadModule.forRoot(),
     ToastrModule.forRoot({
@@ -43,9 +56,13 @@ import { TasksComponent } from './views/tasks/tasks.component';
     }),
   ],
   providers: [  TasksRepository
-              //, UsersComponent
               , CommonRepository
-              , BusinessServices
+    , BusinessServices,
+    CommonRepository,
+    LoginRepository,
+    UsersRepository,
+    LoaderService,
+    Globals,
              ],
   bootstrap: [AppComponent]
 })
