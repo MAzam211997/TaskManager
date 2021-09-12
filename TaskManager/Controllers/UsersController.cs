@@ -50,10 +50,7 @@ namespace TaskManager.Controllers
                 bool isRecordDeleted = false;
                 if (!IsFileDelete(fileName))
                     isRecordDeleted = CommonManager.UsersManager.DeleteUser(Convert.ToInt32(userID));
-
-                _responseViewModel = isRecordDeleted
-                    ? new ResponseViewModel(HttpStatusCode.OK, true, "User is deleted successfully.")
-                    : new ResponseViewModel(HttpStatusCode.NotFound, null, "User not found.");
+                _responseViewModel = _responseMessages.DisplayUpdateMessage(isRecordDeleted, "User deleted successfully.", "User not found.");
             }
             catch (SqlException e)
             {
@@ -155,15 +152,11 @@ namespace TaskManager.Controllers
 
                 if (user.IsInserting)
                 {
-                    _responseViewModel = Convert.ToInt32(result) != -1
-                        ? new ResponseViewModel(HttpStatusCode.OK, result, "Data Save Successfully")
-                        : new ResponseViewModel(HttpStatusCode.InternalServerError, result, "Something went wrong.");
+                    _responseViewModel = _responseMessages.DisplayInsertMessage(result, "Data Saved Successfully.", "Something went wrong.");
                 }
                 else
                 {
-                    _responseViewModel = Convert.ToBoolean(result)
-                        ? new ResponseViewModel(HttpStatusCode.OK, result, "Data Update Successfully")
-                        : new ResponseViewModel(HttpStatusCode.InternalServerError, result, "Something went wrong.");
+                    _responseViewModel = _responseMessages.DisplayUpdateMessage(result, "Data Updated Successfully.", "Something went wrong.");
                 }
             }
             catch (SqlException e)
@@ -174,6 +167,8 @@ namespace TaskManager.Controllers
 
             return Ok(_responseViewModel);
         }
+
+        
 
         private bool IsFileUpload(IFormCollection form)
         {
@@ -279,9 +274,7 @@ namespace TaskManager.Controllers
                         return Ok(new ResponseViewModel(HttpStatusCode.NotFound, false, "Email address already exist."));
 
                     result = CommonManager.UsersManager.UpdateUserProfile(user);
-                    _responseViewModel = Convert.ToBoolean(result)
-                        ? new ResponseViewModel(HttpStatusCode.OK, result, "Profile Updated Successfully")
-                        : new ResponseViewModel(HttpStatusCode.InternalServerError, result, "Something went wrong.");
+                    _responseViewModel = _responseMessages.DisplayUpdateMessage(result, "Profile Updated Successfully.", "Something went wrong.");
                 }
             }
             catch (SqlException e)
@@ -300,10 +293,7 @@ namespace TaskManager.Controllers
             {
                 bool isPasswordChanged =
                     CommonManager.UsersManager.ResetPassword(resetModel.LoginID, GeneralHelper.HashSHA1(resetModel.Password));
-
-                _responseViewModel = isPasswordChanged
-                    ? new ResponseViewModel(HttpStatusCode.OK, true, "Success")
-                    : new ResponseViewModel(HttpStatusCode.NotFound, null, "Data not found");
+                _responseViewModel = _responseMessages.DisplayUpdateMessage(isPasswordChanged, "Password changed Successfully.", "Data not found.");
             }
             catch (Exception e)
             {
@@ -327,10 +317,7 @@ namespace TaskManager.Controllers
                     return Ok(new ResponseViewModel(HttpStatusCode.NotFound, false, "New password and confirm password should be same."));
                 }
                 bool isPasswordChanged = CommonManager.UsersManager.ResetPassword(SessionVars.LoggedInLoginID, GeneralHelper.HashSHA1(resetModel.NewPassword));
-
-                _responseViewModel = isPasswordChanged
-                    ? new ResponseViewModel(HttpStatusCode.OK, true, "Success")
-                    : new ResponseViewModel(HttpStatusCode.NotFound, null, "Data not found");
+                _responseViewModel = _responseMessages.DisplayUpdateMessage(isPasswordChanged, "Password changed Successfully.", "Data not found.");
             }
             catch (Exception e)
             {

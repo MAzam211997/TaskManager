@@ -13,7 +13,7 @@ export class TasksRepository extends GenericRepository<tasks> implements ITasksR
 
   url: string = environment.urlAddress;
   constructor(protected _http: HttpClient) {
-    super(_http, 'api/Users/', environment.urlAddress);
+    super(_http, 'api/Tasks/', environment.urlAddress);
   }
 
   GetAll(currentPage: number, recordsPerPage: number, filterText: string): Observable<any> {
@@ -22,12 +22,12 @@ export class TasksRepository extends GenericRepository<tasks> implements ITasksR
       filterText = "|";
     }
     return this._http
-      .get(this.url + 'api/Users/SelectAll' + '/' + currentPage + '/' + recordsPerPage + '/' + filterText, this.httpOptions).pipe(map(this.extractData), catchError(this.handleError));
+      .get(this.url + 'api/Tasks/SelectAll' + '/' + currentPage + '/' + recordsPerPage + '/' + filterText, this.httpOptions).pipe(map(this.extractData), catchError(this.handleError));
   }
 
-  DeleteRec(taskID: string, fileName: string) {
+  DeleteRec(taskID: string) {
     return this._http
-      .delete('api/Users/DeleteRec' + '/' + taskID + "/" + fileName, this.httpOptions).pipe(map(this.extractData), catchError(this.handleError));
+      .delete('api/Tasks/DeleteRec' + '/' + taskID , this.httpOptions).pipe(map(this.extractData), catchError(this.handleError));
 
   }
 

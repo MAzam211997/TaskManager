@@ -53,6 +53,7 @@ namespace TaskManager.Global
         #region Managers Singleton
 
         protected ResponseViewModel _responseViewModel;
+        protected ResponseMessages _responseMessages = new ResponseMessages();
 
         private CredentialManager _credentialManager;
         protected CredentialManager CredentialManager => _credentialManager ?? (_credentialManager = new CredentialManager());
