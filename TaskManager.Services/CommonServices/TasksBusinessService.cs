@@ -26,7 +26,35 @@ namespace TaskManager.Services.CommonServices
                 return CreateTaskFromDataRow(ds.Tables[0].Rows[0]);
             return null;
         }
+        public List<Tasks> SelectAll(int skip, int next, string filterText, int UserID)
+        {
+            AuditAppLib lib = new AuditAppLib();
+            if (filterText.Contains("~"))
+            {
+                filterText = filterText.Replace("~", "/");
+                try
+                {
+                    filterText = lib.Date_SaveFormat(filterText);
+                }
+                catch (Exception ex)
+                {
 
+                }
+            }
+            List<Tasks> tasks = new List<Tasks>();
+            DataSet ds = ExecuteQueryCommand(ProcStarter + "Tasks_SelectAll",
+                CreateParameter("Skip", SqlDbType.Int, skip),
+                CreateParameter("Next", SqlDbType.Int, next),
+                CreateParameter("UserID", SqlDbType.Int, UserID),
+                CreateParameter("FilterText", SqlDbType.VarChar, filterText.Replace("|", "")));
+            if (ds == null || ds.Tables.Count <= 0 || ds.Tables[0].Rows.Count <= 0)
+                return null;
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                tasks.Add(CreateTaskFromDataRow(dr));
+            }
+            return tasks;
+        }
         public DataTable SelectAll()
         {
             DataSet ds = ExecuteQueryCommand(ProcStarter + "Tasks_SelectAll");

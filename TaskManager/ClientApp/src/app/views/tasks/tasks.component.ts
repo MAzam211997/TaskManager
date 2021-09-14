@@ -41,27 +41,27 @@ export class TasksComponent implements OnInit {
     //    this.loaderService.display(false);
     //    this.rolesObject = data.filter(x => x.tblName == this.applicationCodes.Roles);
     //  });
-    ////this.LoadParentGrid();
+    //this.LoadParentGrid();
   }
 
-  //LoadParentGrid() {
-  //  this.loaderService.display(true);
-  //  this.businessService.taskService.GetAll(this.currentPage, this.paginationPageSize, this.searchText).subscribe(data => {
-  //    try {
-  //      if (data) {
-  //        this.usersObject = data._obj;
-  //        this.totalRecord = data._obj[0]["total"];
-  //        this.totalPages = Math.ceil(this.totalRecord / this.paginationPageSize);
-  //        setTimeout(x => {
-  //          this.setPagingValues(this.currentPage);
-  //        }, 400)
-  //      }
-  //      this.loaderService.display(false);
-  //    } catch {
-  //      this.loaderService.display(false);
-  //    }
-  //  });
-  //}
+  LoadParentGrid() {
+    this.loaderService.display(true);
+    this.businessService.taskService.GetAll(this.currentPage, this.paginationPageSize, this.searchText).subscribe(data => {
+      try {
+        if (data) {
+          this.usersObject = data._obj;
+          this.totalRecord = data._obj[0]["total"];
+          this.totalPages = Math.ceil(this.totalRecord / this.paginationPageSize);
+          setTimeout(x => {
+            this.setPagingValues(this.currentPage);
+          }, 400)
+        }
+        this.loaderService.display(false);
+      } catch {
+        this.loaderService.display(false);
+      }
+    });
+  }
 
   onSearchkeyUp(e) {
     this.currentPage = 1;
@@ -166,6 +166,7 @@ export class TasksComponent implements OnInit {
   }
 
   addUpdateTask() {
+    debugger
     this.loaderService.display(true);
     if (!this.smartUtilities.ValidateForm('#ContainerFormFields')) {
       this.loaderService.display(false);

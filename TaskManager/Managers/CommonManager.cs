@@ -23,6 +23,7 @@ namespace TaskManager.Managers
         }
         public UserBusinessService UsersManager => _commonBusinessService.UsersManager;
         public RolesBusinessService RolesManager => _commonBusinessService.RolesManager;
+        public TasksBusinessService TasksManager => _commonBusinessService.TasksManager;
         //public DeliverableService DeliverableManager => _commonBusinessService.DeliverableManager;
         //public DeliverableAssignmentService DeliverableAssignmentManager => _commonBusinessService.DeliverableAssignmentManager;
         //public DeliverableCommentsService DeliverableCommentsManager => _commonBusinessService.DeliverableCommentsManager;

@@ -31,5 +31,10 @@ namespace TaskManager.Services.CommonServices
         public RolesBusinessService RolesManager =>
             _rolesBusinessService ?? (_rolesBusinessService =
                 new RolesBusinessService(_clientConnectionString));
+
+        private TasksBusinessService _tasksBusinessService;
+        public TasksBusinessService TasksManager =>
+            _tasksBusinessService ?? (_tasksBusinessService =
+                new TasksBusinessService(_clientConnectionString));
     }
 }

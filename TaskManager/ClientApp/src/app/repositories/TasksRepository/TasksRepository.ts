@@ -31,9 +31,9 @@ export class TasksRepository extends GenericRepository<tasks> implements ITasksR
 
   }
 
-  SaveRec(task: tasks): Observable<any> {
-    var formData: FormData = new FormData();
-    return this.PostFile('SaveRec', formData).pipe(map(this.extractData), catchError(this.handleError));
+  SaveRec(task: tasks): Observable<any>
+  {
+    return this.PostData('SaveRec', task).pipe(map(this.extractData), catchError(this.handleError));
   }
 
   GetTaskByID(taskID: string): Observable<any> {
